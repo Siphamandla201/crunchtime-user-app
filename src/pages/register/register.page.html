@@ -1,0 +1,94 @@
+<ion-content [fullscreen]="true">
+  <ion-header>
+    <ion-row>
+      <ion-item-divider>
+        <ion-icon name="arrow-back" routerLink="/welcome"></ion-icon>
+        <h1>Register</h1>
+      </ion-item-divider>
+    </ion-row>
+  </ion-header>
+  <ion-row class="img-container">
+    <img src="assets/images/Group%203149.png" alt="logo" />
+  </ion-row>
+
+  <ion-row class="header-container">
+    <h1 class="login">Create Account</h1>
+    <p>
+      Welcome to Crunch Time halaal food delivery. Signup to create a free
+      account to start ordering
+    </p>
+  </ion-row>
+
+  <form [formGroup]="form" class="form" autocomplete="off">
+    <div class="list-container">
+      <ion-list>
+        <ion-label position="floating">Username</ion-label>
+        <ion-input autocomplete="off" type="text" formControlName="username" class="ion-padding"></ion-input>
+        <app-form-control-error
+          [control]="form.get('username')?.value"
+          [submitting]="saving"
+          label="username"
+        ></app-form-control-error>
+
+        <ion-label position="floating">Full Name</ion-label>
+        <ion-input autocomplete="off" type="text" formControlName="fullName" class="ion-padding"></ion-input>
+        <app-form-control-error
+          [control]="form.get('fullName')?.value"
+          [submitting]="saving"
+          label="full name"
+        ></app-form-control-error>
+
+        <ion-label position="floating">Email Address</ion-label>
+        <ion-input autocomplete="off" type="email" formControlName="emailAddress" class="ion-padding"></ion-input>
+        <app-form-control-error
+          [control]="form.get('emailAddress')?.value"
+          [submitting]="saving"
+          label="email address"
+        ></app-form-control-error>
+
+        <ion-label position="floating">Phone Number</ion-label>
+        <ion-input autocomplete="off" type="text" formControlName="phoneNumber" class="ion-padding"></ion-input>
+        <app-form-control-error
+          [control]="form.get('phoneNumber')?.value"
+          [submitting]="saving"
+          label="phone number"
+        ></app-form-control-error>
+
+        <ion-label position="floating">Password</ion-label>
+        <ion-input autocomplete="off" type="password" formControlName="password" class="ion-padding"></ion-input>
+        <app-form-control-error
+          [control]="form.get('password')?.value"
+          [submitting]="saving"
+          label="password"
+        ></app-form-control-error>
+      </ion-list>
+    </div>
+
+    <div class="bottom-block">
+      <div class="terms-condition">
+        <ion-checkbox
+          class="checkbox-square"
+          ng-model="isCheckedCommercial"
+        ></ion-checkbox>
+        <p>
+          By logging in or registering, you have agreed to the
+          <span [routerLink]="['/terms-and-conditions']"
+            >Terms and Conditions</span
+          >
+          and
+          <span [routerLink]="['/terms-and-conditions']">Privacy Policy.</span>
+        </p>
+      </div>
+    </div>
+    <div class="bottom-block">
+      <button (click)="registerOnTap()" class="submit" [disabled]="!form.valid && !checked" type="submit">
+        Create Account
+      </button>
+    </div>
+    <div class="bottom-block">
+      <p>
+        Already Have An Account? <span [routerLink]="['/login']">Login</span>
+      </p>
+    </div>
+  </form>
+</ion-content>

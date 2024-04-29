@@ -1,0 +1,31 @@
+<ion-content>
+  <div>
+    <!-- Input for searching -->
+    <input style="text-align: center; background-color: white; width: 90%; position: absolute; top: 25px; z-index: 1;left: 5%;height: 40px; border-radius: 2px;color: gray;display: flex;align-items: center;justify-content: center;border: none;box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);" id="pac-input" class="controls" type="text" placeholder="Search for places...">
+
+    <!-- Container for autocomplete suggestions -->
+    <div class="pac-card" id="pac-card"></div>
+  </div>
+
+  <!-- Map container -->
+  <div #map style="width: 100%; height: 100%;"></div>
+
+  <!-- Info window content -->
+  <div id="infowindow-content">
+    <span id="place-name" class="title"></span><br />
+    <span id="place-address"></span>
+  </div>
+
+  <!-- Confirm location button -->
+  <div (click)="getCurrentLocation()" style="background-color: red;z-index: 1; position: absolute; bottom: 15px;width: 90%; left: 5%;display: flex;align-items: center;justify-content: center;border-radius: 15px;">
+    <h3>Confirm location</h3>
+  </div>
+  <ion-router-outlet></ion-router-outlet>
+</ion-content>
+
+<!-- Script to initialize the searchLocation() function -->
+<!-- <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    searchLocation();
+  });
+</script> -->

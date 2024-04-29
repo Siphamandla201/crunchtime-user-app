@@ -1,0 +1,22 @@
+<div class="container-slides">
+  <div class="food-content">
+    <div *ngFor="let category of categories" class="near-you-item">
+      <!-- <ion-spinner *ngIf="!category.image"></ion-spinner> -->
+
+      <div class="card" (click)="seeMenuItems(category.id, category.categoryName)">
+        <ion-img *ngIf="category.image" [src]="category.image" [alt]="'food-item'"></ion-img>
+        <!-- <div *ngIf="driversOnline?.length < 1" class="middle">
+          <div class="time">
+            <h6>offline</h6>
+          </div>
+        </div> -->
+      </div>
+
+      <div class="near-you-text">
+        <div class="near-you-sub-text">
+          <h6>{{ category.categoryName }}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+{
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "@ionic/angular/common",
+    "@ionic/angular/standalone"
+  ],
+  "cSpell.words": [
+    "aaid",
+    "Deliverbtn",
+    "dependecy",
+    "favourited",
+    "Favourites",
+    "idfa",
+    "infowindow",
+    "modalcontroller",
+    "Munu",
+    "Nedbank",
+    "ngxs",
+    "Pickupbtn",
+    "webstorage"
+  ],
+  "java.configuration.updateBuildConfiguration": "interactive"
+}

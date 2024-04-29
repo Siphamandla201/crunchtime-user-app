@@ -1,0 +1,30 @@
+<!--<ion-header class="bar-transparent">-->
+<!--  <ion-toolbar>-->
+<!--    <ion-buttons slot="start">-->
+<!--      <ion-back-button defaultHref="/password/reset"></ion-back-button>-->
+<!--    </ion-buttons>-->
+<!--    <ion-title align="center"><b>Verify Account</b></ion-title>-->
+<!--  </ion-toolbar>-->
+<!--</ion-header>-->
+
+<ion-header>
+  <ion-row>
+    <ion-item-divider>
+      <ion-icon class="add-icon" name="arrow-back" (click)="moveBackOnTap()"></ion-icon>
+      <h1>Verify Account</h1>
+    </ion-item-divider>
+  </ion-row>
+</ion-header>
+
+<ion-content>
+    <p class="content-top-text">Please enter the OTP number sent to your email.</p>
+    <div class="otp-box">
+      <p>Enter your OTP code here</p>
+      <!-- <otp [setting]="otpSettings" (onValueChange)="verifyOtp($event)"></otp> -->
+      <div class="cover"></div>
+    </div>
+
+    <p class="context-bottom-text">Didn't receive code? <span (click)="requestOtpAgainOnTap()"><b>Request again</b></span></p>
+
+    <button class="confirm-button" tappable (click)="confirmOtp()">Confirm</button>
+</ion-content>

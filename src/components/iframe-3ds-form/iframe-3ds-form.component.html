@@ -1,0 +1,9 @@
+<form target="my_iframe" [action]="url" method="POST" #myForm>
+  <button type="submit" (click)="CompleteTransaction(form)">Click here to continue</button>
+</form>
+<iframe id="secure-iframe" scrolling="auto" name="my_iframe"></iframe>
+<ion-toolbar>
+  <ion-buttons slot="end">
+    <ion-button routerLink="/payment-options">cancel</ion-button>
+  </ion-buttons>
+</ion-toolbar>

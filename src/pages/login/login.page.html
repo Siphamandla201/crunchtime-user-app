@@ -1,0 +1,80 @@
+<ion-content [fullscreen]="true">
+  <ion-header>
+    <ion-row>
+      <ion-item-divider>
+        <ion-icon name="arrow-back" routerLink="/welcome"></ion-icon>
+        <h1>Login</h1>
+      </ion-item-divider>
+    </ion-row>
+  </ion-header>
+  <div id="login">
+  <ion-row class="img-container">
+    <img class="logo" src="assets/images/Group%203149.png" alt="logo">
+  </ion-row>
+
+  <ion-grid>
+    <ion-row class="create">
+      <ion-text><b>Welcome</b></ion-text>
+    </ion-row>
+    <ion-row>
+      <ion-col class="welcome-message" style="overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* number of lines to show */ 
+      -webkit-box-orient: vertical;">
+        <ion-text class="welcome">Welcome to CrunchTime Halaal Food Delivery. </ion-text>
+        <ion-text class="welcome">Login To Start Ordering.</ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+    <div *ngIf="loadingRequest">
+      <ion-spinner name="circular"></ion-spinner>
+    </div>
+
+    <form [formGroup]="form" class="form">
+      <div class="list-container">
+      <ion-list>
+        <ion-label class="inputlabel" position="floating"><b>Username</b></ion-label>
+        <ion-input placeholder="Eg franky" type="text" formControlName="username" class="ion-padding"></ion-input>
+        <app-form-control-error
+          [control]="form.get('username')?.value"
+          [submitting]="saving"
+          label="username"
+        ></app-form-control-error>
+
+        <ion-label class="inputlabel" position="floating"><b>Password</b></ion-label>
+        <div class="inputpass">
+          <ion-input placeholder="********" type="password" formControlName="password" class="ion-padding" #mysecretpassword></ion-input>
+          <ion-icon class="see-password" position="floating" item-right name="eye-off-outline" #eye (click)="togglePassword(mysecretpassword, eye)" slot="end"></ion-icon>
+        </div>
+        <app-form-control-error
+          [control]="form.get('password')?.value"
+          [submitting]="saving"
+          label="password"
+        ></app-form-control-error>
+      </ion-list>
+      </div>
+    </form>
+
+  <div class="forgot">
+    <ion-text class="fp" [routerLink]="['/password/reset']"> <span><b> Forgot Password?</b></span></ion-text>
+  </div>
+
+  <ion-grid class="button_grid">
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="loginOnTap()" [disabled]="loading || saving">Login</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-row>
+    <ion-col>
+      <ion-text class="terms_cons">Do Not Have An Account? <span [routerLink]="['/register']">Register Here</span></ion-text>
+    </ion-col>
+  </ion-row>
+  </div>
+</ion-content>
+
+
+

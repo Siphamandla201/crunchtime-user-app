@@ -1,0 +1,458 @@
+// h1 {
+//   font-size: 1.5rem;
+// }
+// h2 {
+//   font-size: 1.3rem;
+// }
+// h3 {
+//   font-size: 1rem;
+// }
+// h4 {
+//   font-size: 1.2rem;
+// }
+// h5 {
+//   font-size: 1rem;
+// }
+// h6 {
+//   font-size: 0.9rem;
+//   line-height: 1.5rem;
+// }
+// span {
+//   font-size: 0.75rem;
+// }
+
+.item-bottom-text {
+  width: 100%;
+  padding: 15px;
+  background: white;
+  border-top: 0.5px solid #ffc80081;
+  margin-bottom: -10px;
+
+  .plus-minus{
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+
+    ion-icon {
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+  }
+
+  p {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    &:first-child {
+      background: #e1e1e1;
+      left: 2px;
+      z-index: 1;
+    }
+
+    &:nth-child(2) {
+      border-radius: 0 !important;
+      color: #000000;
+      font-size: 20px;
+    }
+
+    &:last-child {
+      background: red;
+      right: 2px;
+      z-index: 1;
+    }
+  }
+}
+
+ion-list{
+  padding: 0;
+  margin: 0;
+}
+
+.booton{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.addon-label{
+  display: flex;
+  justify-content: space-between;
+}
+
+.addon-radio{
+  margin-left: 10px;
+}
+
+.booton-img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  opacity: 0.8;
+}
+
+.favourite-button{
+
+  z-index: 11;
+  ion-icon{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+  }
+}
+
+
+.dontShow{
+  color: #D3D3D3 !important;
+  transition: 0.3s;
+}
+
+.show{
+  color: #FF0000 !important;
+  transition: 0.3s;
+}
+
+.menuCategoryItemsData{
+    // background: #f6f6f6;
+    padding-bottom: 15px;
+    .menu_box{
+      padding-left: 20px;
+      padding-right: 20px;
+      background: white;
+    }
+  }
+  
+  .categoryName{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 20px 10px 20px;
+    margin: 0;
+    p {
+      font-weight: 800;
+      font-size: 1rem;
+    }
+  }
+
+  .card-type-radio{
+    margin: 0 15px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    ion-item::part(native) {
+      //WRITE ALL YOUR CSS RULES HERE
+      padding-inline-start: 0;
+      /** and lots more **/
+    }
+    .addon-label{
+      margin-left: 20px;
+    }
+  }
+  
+  #favourites{
+    background: #f6f6f6;
+    padding-top: 20px;
+    h4{
+      padding: 0 20px;
+    }
+    .favourite-data{
+      padding: 0 20px;
+      display: flex;
+      overflow-x: scroll;
+      .menu_box{
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        flex-shrink: 0;
+        width: 300px;
+        border: none;
+        border-radius: 5px;
+        background: #ffffff;
+        margin-top: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        padding: 10px;
+        .foodDesc{
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: 280px;
+          height: 40px;
+        }
+      }
+    }
+  }
+  
+  
+  .ionHead2 {
+
+    ion-row{
+      width: 100%;
+    }
+  
+    .pageHead {
+      padding-left: unset;
+      padding-top: 30px;
+      padding-bottom: 15px;
+      background-color: #ffffff;
+      border-bottom: unset;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+  
+      h2{
+        padding: 0 60px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 500px;
+        min-width: 200px;
+        width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+  
+        color: #0d0d0d;
+        text-align: center;
+        position: absolute;
+        width: 100%;
+        z-index: -1;
+      }
+  
+      ion-icon {
+        color: #0d0d0d;
+        width: 25px;
+        height: 25px;
+        padding-left: 20px;
+      }
+    }
+  }
+  
+  #ionHead::after {
+    background-image: unset;
+  }
+  
+  ion-content {
+    // background: #f6f6f6;
+    padding: 0;
+    position: absolute;
+    bottom: 91px;
+    top: 70px;
+    height: unset;
+  
+    .foodPrice{
+      color:  black;
+    }
+    .back-arrow{
+      width: 25px;
+      height: 25px;
+      padding: 5px;
+      border-radius: 50%;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: #f6f6f6;
+      opacity: 0.8;
+    }
+    .logo-container{
+      transition: 0.2s;
+      img{
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: 0.2s;
+      }
+    }
+    .menu_box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      border-bottom: #d3d3d3 1px solid;
+      padding: 10px 0;
+      width: 100%;
+  
+      .foodDesc {
+        font-size: 0.75rem;
+        line-height: 1.2rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0 auto;
+        box-sizing: border-box;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        color: #1f2937;
+        padding: 5px 0;
+      }
+    }
+
+    
+    .menu_box2 {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: #d3d3d3 1px solid;
+      padding: 10px 20px;
+      width: 100%;
+
+      .price-select{
+        display: flex;
+        p{
+          padding-right: 10px;
+        }
+      }
+    }
+  
+  
+    // ion-card{
+    //   display: flex;
+    //   flex-wrap: wrap;
+    //   justify-content: center;
+    //   align-content: center;
+    //   width: 110px;
+    //   height: 150px;
+    //   h2 {
+    //     color: #0d0d0d;
+    //   }
+    //   .category-image-container {
+    //     img {
+    //       align-content: end;
+    //       width: 100px;
+    //       height: 105px;
+    //     }
+    //   }
+    // }
+  
+    .restaurant-content {
+      padding: 0;
+
+      .restaurant-details, .restaurant-info-content{
+        // padding: 20px;
+        padding: 0px;
+      }
+  
+      .restaurant-details {
+
+        background: #ffffff;
+
+        // .image-container {
+        //   height: 200px;
+        //   display: flex;
+        //   align-items: center;
+        //   overflow: hidden;
+        //   margin-bottom: 10px;
+        // }
+        
+        // .image-container img {
+        //   width: 100%;
+        //   height: auto;
+        //   display: block;
+        //   margin: 0 auto; /* Center the image horizontally */
+        // }
+
+        img {
+          margin-top: 0px;
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+          margin-bottom: 25px;
+          object-position: center;
+          display: block;
+          margin-bottom: 35px;
+        }
+        
+        h1 {
+          margin-top: 25px;
+          padding: 0 10px;
+          font-size: 23px;
+        }
+
+        p {
+          padding: 2px 10px;
+  
+          &:last-child {
+            padding: 10px 10px 35px 10px;
+          }
+        }
+      }
+  
+      .restaurant-info-content {
+        margin: 20px 0;
+  
+        .restaurant-info {
+          display: flex;
+          padding: 10px 0;
+          border-top: 1px solid;
+  
+          ion-icon {
+            margin: 0 10px;
+            position: relative;
+            top: 3px;
+            color: #ff0000;
+          }
+  
+          .restaurant-item {
+            p:last-child {
+              color: grey;
+            }
+          }
+        }
+      }
+    }
+  
+    .cartButtonSingle {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #ffffff;
+      z-index: 5;
+
+      ion-button{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 61px;
+        margin: 15px;
+
+        .cartBtnText{
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+      
+      // ion-button {
+      //   display: flex;
+      //   justify-content: center;
+      //   align-items: center;
+      //   position: fixed !important;
+      //   width: 100%;
+      //   height: 61px;
+      //   bottom: 0;
+      //   color: #ffffff;
+      //   background: #FF0000;
+      //   padding: 0 20px;
+      //   border-radius: 0;
+      // }
+      .ionBtn {
+        justify-content: space-between;
+        --background: #FF0000;
+        color: #ffffff;
+      }
+    }
+  }
+
+  .modal-content-container{
+    height: 100%;
+  }

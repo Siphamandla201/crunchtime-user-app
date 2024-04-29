@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-item-divider>
+    <ion-icon name="arrow-back" (click)="closeModal()"></ion-icon>
+    <h3>Apply a Promo code</h3>
+  </ion-item-divider>
+</ion-header>
+<ion-content>
+  <div class="voucher-form">
+    <h3>Promo Code</h3>
+    <form name="form" [formGroup]="form">
+      <div class="applypass">
+        <!-- <ion-input type="text" [name]="promoCode" formControlName="promoCode" placeholder="Insert voucher pin here" class="ion-padding"></ion-input> -->
+        <ion-button class="applybtn" (click)="getDiscount()">Apply</ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

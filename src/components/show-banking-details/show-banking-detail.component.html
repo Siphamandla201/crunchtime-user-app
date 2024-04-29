@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-row>
+    <ion-item-divider>
+      <ion-icon
+        class="add-icon"
+        name="arrow-back"
+        (click)="closeModal()"
+      ></ion-icon>
+      <h1>Select a card</h1>
+    </ion-item-divider>
+  </ion-row>
+  <!-- <ion-button (click)="orderPickUpStatus()">pickup</ion-button>
+    <ion-button (click)="orderDeliverStatus()">deliver</ion-button> -->
+</ion-header>
+<ion-content>
+    <div *ngIf="bankingDetails?.length">
+        <div *ngFor="let d of bankingDetails">
+            <!-- <ion-card (click)="setSelectedBankingDetails(d?.id)">
+              <ion-card-content class="card-cont">
+                <ion-col size="8">
+                  <p>Card ending in **{{d.last4digits}}</p>
+                  <p>{{d.expiryDate}}</p>
+                </ion-col>
+                <ion-col size="4" class="brand-img">
+                  <div *ngIf="d.paymentBrand === 'VISA'" class="card-img-box">
+                    <img class="logo" src="assets/icon/visa.png" alt="logo" />
+                  </div>
+                  <div *ngIf="d.paymentBrand === 'MASTER'" class="card-img-box">
+                    <img class="logo" src="assets/icon/master card.png" alt="logo" />
+                  </div>
+                </ion-col>
+              </ion-card-content>
+            </ion-card> -->
+          </div>
+    </div>
+    <div>
+      <div>
+        <ion-card (click)="addABankCard()">
+          <ion-card-content>
+            <ion-col size="8" class="card-cont1">
+              <p>Add a new card</p>
+            </ion-col>
+            <ion-col size="12"  class="brand-img1">
+              <ion-icon name="card-outline"></ion-icon>
+            </ion-col>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+</ion-content>

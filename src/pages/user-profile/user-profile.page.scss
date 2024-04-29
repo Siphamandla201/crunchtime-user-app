@@ -1,0 +1,219 @@
+ion-header {
+  ion-item-divider {
+    padding-top: 30px;
+    padding-bottom: 15px;
+    padding-left: 0;
+    background-color: #ffffff;
+
+    ion-icon {
+      color: #0d0d0d;
+      width: 25px;
+      height: 25px;
+      padding-left: 20px;
+    }
+
+    h1 {
+      color: #0d0d0d;
+      // font-weight: 500;
+      font-size: 1.25rem;
+      text-align: center;
+      position: absolute;
+      padding: 0 60px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      max-width: 500px;
+      min-width: 200px;
+      width: 100%;
+      margin: 0 auto;
+      box-sizing: border-box;
+      z-index: -1;
+    }
+  }
+}
+ion-content {
+  --background: #f6f6f6;
+    a{
+      text-decoration: none;
+      color: black;
+    }
+
+  .profile {
+    padding-top: 50px;
+    padding-bottom: 100px;
+
+    .profile-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 10px;
+  
+      .profile-image-contaner {
+        position: relative;
+        border-radius: 60px;
+        border: 5px #FF0000 solid;
+        width: 120px;
+        height: 120px;
+        z-index: 1;
+  
+        .profile-image {
+          width: 110px;
+          height: 110px;
+          border-radius: 55px;
+          padding: 3px;
+          object-fit:cover
+        }
+  
+        .profile-image-icon {
+          color: #BEC5D1;
+          background-color: #f6f6f6;
+          position: absolute;
+          top: 8px;
+          left: 10px;
+          width: 90px;
+          height: 90px;
+          border-radius: 30px;
+          z-index: 0;
+        }
+  
+  
+        .update-btn {
+          position: absolute;
+          top: 80px;
+          left: 80px;
+          width: 30px;
+          height: 30px;
+          border-radius: 15px;
+          --ionicon-stroke-width: 40px;
+          background-color: #ff0000;
+          color: #ffffff;
+  
+          .upload-btn{
+            color: #000000 !important;
+          }
+        }
+      }
+  
+    }
+
+    .account-menu{
+      margin: 25px 25px 0px 25px;
+      border-radius: 15px;
+      overflow: hidden;
+      background: #ffffff;
+    
+      .account-menu-option{
+        display: flex;
+        flex-wrap: nowrap;
+        width: 100%;
+        .option-icon{
+          color: #FF0000;
+          padding: 15px 15px 15px 15px;
+          display: flex;
+          justify-content: center;
+          ion-icon{
+            width: 25px;
+            height: 25px;
+          }
+        }
+      }
+      .option-name{
+        padding: 15px 0px;
+        margin-right: 15px;
+        height: 100%;
+        border-bottom: 0.5px solid #ffc800ea;
+        width: 100%;
+      }
+
+      .option-name-last{
+        border-bottom: none;
+      }
+    }
+  }
+
+  .social-header{
+    margin: 25px 25px 0px 25px;
+    h2{
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  .social-links{
+    margin: 25px 25px 0px 25px;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #ffffff;
+    ion-col{
+      margin: 10px 0;
+      display: flex;
+      justify-content: center;
+      ion-icon{
+        width: 50px;
+        height: 50px;
+      }
+    }
+    ion-col:first-of-type{
+      border-right: 0.5px solid #ffc80081;
+    }
+  }
+
+  .profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    margin: 0 25px;
+  }
+
+  ion-icon {
+    width: 100px;
+    height: 110px;
+  }
+
+  img {
+    width: 100px;
+    height: 110px;
+    border-radius: 50px;
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .form-container {
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    ion-list {
+      background-color: #ffffff;
+
+      ion-input {
+        border: 1px solid #BEC5D1;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        color: #FF0000;
+        width: 350px;
+      }
+    }
+  }
+
+  .bottom-block {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      background: #FF0000;
+      width: 50%;
+      height: 40px;
+      border-radius: 7px;
+      color: #ffffff;
+    }
+  }
+}

@@ -1,0 +1,62 @@
+h1 {
+  font-size: 2.25rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.75rem;
+}
+h4 {
+  font-size: 1.5rem;
+}
+h5 {
+  font-size: 1.25rem;
+}
+h6 {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+p {
+  font-size: 0.75rem;
+  line-height: 1.2rem;
+}
+span {
+  font-size: 0.75rem;
+}
+
+ion-content {
+  display: flex;
+  justify-content: center;
+
+  ion-card {
+    box-shadow: unset;
+
+    .menuItem {
+      border-bottom: #D3D3D3 1px solid;
+
+      h6 {
+        color: black;
+      }
+
+      p:last-child {
+        color: black;
+      }
+
+      .foodDesc {
+        height: 2.5rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    // ion-button {
+    //   height: 20px;
+    //   font-size: 10px;
+    //   --background: #ff0000;
+    // }
+  }
+}

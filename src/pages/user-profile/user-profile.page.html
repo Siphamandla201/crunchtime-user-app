@@ -1,0 +1,126 @@
+<ion-header>
+  <ion-row>
+    <ion-item-divider>
+      <h1>PROFILE</h1>
+    </ion-item-divider>
+  </ion-row>
+</ion-header>
+
+<ion-content>
+  <ion-col *ngIf="token" class="profile">
+    <ion-row class="profile-container">
+      <div class="profile-image-contaner">
+        <div *ngIf="user?.image">
+          <img class="profile-image" id="files" [src]="user.image"  alt="profile-image">
+        </div>
+        <div *ngIf="user?.image == null || user?.image === undefined">
+          <ion-icon class="profile-image-icon" name="person"></ion-icon>
+        </div>
+        <ion-icon id="default" class="update-btn" name="add-circle-outline" (click)="presentActionSheet()"></ion-icon>
+      </div>
+    </ion-row>
+    <ion-row class="profile-container">
+      <h2>{{name}}</h2>
+    </ion-row>
+    <ion-row class="profile-container">
+      <span>{{user.emailAddress}}</span>
+    </ion-row>
+    <ion-row class="account-menu">
+      <ion-row class="account-menu-option" (click)="openModal()">
+        <div class="option-icon">
+          <ion-icon name="person-outline"></ion-icon>
+        </div>
+        <div class="option-name" (click)="presentModal()">
+          <p>Account Details</p>
+        </div>
+      </ion-row>
+      <ion-row class="account-menu-option" (click)="goToPaymentOptions()">
+        <div class="option-icon">
+          <ion-icon name="card-outline"></ion-icon>
+        </div>
+        <div class="option-name option-name-last">
+          <p>Card Payments</p>
+        </div>
+      </ion-row>
+    </ion-row>
+    <ion-row class="account-menu">
+      <ion-row class="account-menu-option" [routerLink]="['/terms-and-conditions']">
+        <div class="option-icon">
+          <ion-icon name="information-circle-outline"></ion-icon>
+        </div>
+        <div class="option-name">
+          <p>Terms and Conditions</p>
+        </div>
+      </ion-row>
+      <a class="account-menu-option" href="https://crunchtimedelivery.co.za/driver">
+        <div class="option-icon">
+          <ion-icon name="car-outline"></ion-icon>
+        </div>
+        <div class="option-name">
+          <p>Become a Driver</p>
+        </div>
+      </a>
+      <ion-row class="account-menu-option" (click)="logOut()">
+        <div class="option-icon">
+          <ion-icon name="return-up-back-outline"></ion-icon>
+        </div>
+        <div class="option-name option-name-last">
+          <p>Log out</p>
+        </div>
+      </ion-row>
+    </ion-row>
+    <ion-row class="social-header">
+      <h2>Follow us</h2>
+    </ion-row>
+    <ion-row class="social-links">
+      <ion-col size="6">
+        <a href="https://www.instagram.com/crunchtime_delivery/?utm_medium=copy_link">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a>
+      </ion-col>
+      <ion-col size="6">
+        <a href="https://www.facebook.com/CrunchTime2k20/">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-col>
+  <ion-col *ngIf="!token" class="profile">
+    <ion-row class="profile-container">
+      <h2>Login and start ordering with crunchtime</h2>
+    </ion-row>
+    <ion-row class="account-menu">
+      <ion-row class="account-menu-option" [routerLink]="['/welcome']">
+        <div class="option-icon">
+          <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+        </div>
+        <div class="option-name option-name-last">
+          <p>Login</p>
+        </div>
+      </ion-row>
+    </ion-row>
+  </ion-col>
+
+
+  <!-- <form [formGroup]="form" *ngIf="form"  class="form-container">
+    <ion-list>
+      <ion-label position="floating">Full Name</ion-label>
+      <ion-input type="text" formControlName="fullName"></ion-input>
+
+      <ion-label position="floating">Email Address</ion-label>
+      <ion-input type="text" formControlName="emailAddress"></ion-input>
+
+      <ion-label position="floating">Phone Number</ion-label>
+      <ion-input type="text" formControlName="phoneNumber"></ion-input>
+
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-list>
+  </form>
+
+<ion-row class="bottom-block">
+  <button (click)="updateOnTap()" class="submit" type="submit">
+    Update Account
+  </button>
+</ion-row> -->
+</ion-content>

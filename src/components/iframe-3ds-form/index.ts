@@ -1,0 +1,1 @@
+export * from './iframe-3ds-form.component';

@@ -1,0 +1,27 @@
+<ion-content>
+  <ion-row>
+    <h1>
+      Request to delete your account
+    </h1>
+  </ion-row>
+  <ion-row>
+    <p>
+      You are about delete you crunchtime account. Please note that once you proceed, your account will be removed within 1-3 working days.
+    </p>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <p (click)="dismiss()">Cancel</p>
+    </ion-col>
+    <ion-col>
+      <div (click)="deleteAccount()" class="proceed-btn">
+        <div class="proceed-name">
+          <p>Proceed</p>
+        </div>
+        <div class="proceed-icon">
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-content>

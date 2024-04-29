@@ -1,0 +1,12 @@
+<form
+  name="form"
+  [formGroup]="form"
+  [action]="url"
+  target="_self"
+  method="POST"
+  (ngSubmit)="CompleteTransaction()"
+  #myForm1
+>
+  <input type="hidden" [name]="paramName" [value]="paramValue" />
+  <button type="submit" (click)="CompleteTransaction()">Click Here To Continue</button>
+</form>

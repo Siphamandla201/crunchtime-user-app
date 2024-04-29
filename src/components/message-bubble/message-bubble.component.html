@@ -1,0 +1,10 @@
+<li [id]="message.sid" [ngClass]="{'received_msg': direction === 'incoming', 'outgoing_msg': direction === 'outgoing'}">
+  <div [ngClass]="{'received_withd_msg': direction === 'incoming', 'sent_msg': direction === 'outgoing'}">
+    <div>
+      {{message.body}}
+    </div>
+    <span class="time_date">
+      {{message.state.timestamp.toLocaleString()}}
+    </span>
+  </div>
+</li>

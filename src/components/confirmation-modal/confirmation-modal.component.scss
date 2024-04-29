@@ -1,0 +1,27 @@
+ion-row{
+    margin: 25px;
+    h1{
+        font-size: 1.6rem;
+    } 
+}
+
+ion-row:last-of-type{
+    display: flex;
+    justify-content: space-between;
+}
+
+.proceed-btn{
+    display: flex;
+    justify-content: end;
+    p{
+      color: #FF0000;
+    }
+    .proceed-icon{
+        color: #FF0000;
+        padding-left: 5px;
+        ion-icon{
+            width: 25px;
+            height: 25px;
+        }
+    }
+  }

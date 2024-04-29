@@ -1,0 +1,113 @@
+<ion-header *ngIf="!menuItem.img" class="ionHead2">
+    <ion-row>
+      <div class="pageHead">
+        <ion-icon
+          class="add-icon"
+          name="arrow-back"
+          (click)="dismissed.emit()"
+        ></ion-icon>
+        <h2></h2>
+      </div>
+      <span class="booton-img favourite-button" *ngIf="token">
+        <ion-icon (click)="removeFavourite(menuItem.id)" id="favourited" class="heartFavourite dontShow" name="heart"></ion-icon>
+      </span>
+    </ion-row>
+  </ion-header>
+  
+    
+    <ion-content>
+        <ion-icon  *ngIf="menuItem.img"  class="back-arrow"  name="arrow-back"  (click)="dismissed.emit()"></ion-icon>        
+        <div class="restaurant-content">
+          <div class="restaurant-details">
+            <!-- <div class="image-container"> -->
+              <img *ngIf="menuItem.image" class="item-image" src="{{ menuItem.image}}" alt="">
+            <!-- </div> -->
+
+            <h1>{{menuItem.foodName}}</h1>
+            <p>{{menuItem.description}}</p>
+            <!-- <p>4.3 Very Good(84)</p> -->
+            <!--<p>Restaurant description here</p>-->
+          </div>
+          
+          <form [formGroup]="form" (ngSubmit)="addToCart()" *ngIf="menuItem.groupAddons?.length" class="menuCategoryItemsData">
+              <div *ngFor="let group of menuItem.groupAddons">
+                <div class="categoryName">
+                  <h4>{{group.addonName}}</h4>
+                  <p *ngIf="group.groupItems[0]?.addonRequired">required</p>
+                </div>
+                <ion-list *ngIf="group.groupItems[0]?.chooseOne" lines="none" class="card-type-radio">
+                  <ion-radio-group (ionChange)="updatePrice()" [allowEmptySelection]="true" :id="{{group.addonName}}" :formControlName="{{group.addonName}}">
+                    <ion-item class="addon-radio-item" *ngFor="let item of group.groupItems">
+                      <ion-label class="addon-label"><span class="addon-name">{{item.foodName}}</span><span class="addon-price" *ngIf="item?.foodPrice > 0">R{{item.foodPrice}}</span></ion-label>
+                      <ion-radio mode="md" class="addon-radio" slot="start" :value="{{item.id}}"></ion-radio> 
+                    </ion-item>
+                  </ion-radio-group>
+                </ion-list>
+                <ion-list *ngIf="!group.groupItems[0]?.chooseOne" lines="none" class="card-type-radio">
+                  <ion-radio-group *ngFor="let item of group.groupItems" (ionChange)="updatePrice()" [allowEmptySelection]="true" :id="{{item.foodName}}" [formControlName]="item.foodName">
+                    <ion-item class="addon-radio-item">
+                      <ion-label class="addon-label"><span class="addon-name">{{item.foodName}}</span><span class="addon-price" *ngIf="item?.foodPrice > 0">R{{item.foodPrice}}</span></ion-label>
+                      <ion-radio mode="md" class="addon-radio" slot="start" :value="{{item.id}}"></ion-radio> 
+                    </ion-item>
+                  </ion-radio-group>
+                </ion-list>
+              </div>
+              <div *ngIf="menuItem.addons?.length">
+                <div class="categoryName">
+                  <h4>Add</h4>
+                </div>
+                <ion-list lines="none" class="card-type-radio">
+                  <ion-radio-group (ionChange)="updatePrice()" *ngFor="let item of menuItem.addons" [allowEmptySelection]="true" :id="{{item.foodName}}" :formControlName="{{item.foodName}}">
+                    <ion-item>
+                      <ion-label class="addon-label"><span class="addon-name">{{item.foodName}}</span><span class="addon-price" *ngIf="item?.foodPrice > 0">R{{item.foodPrice}}</span></ion-label>
+                      <ion-radio mode="md" class="addon-radio" slot="start" :value="{{item.id}}"></ion-radio>
+                    </ion-item>
+                  </ion-radio-group>
+                </ion-list>
+              </div>
+              <div class="cartButtonSingle">
+
+                <ion-button 
+                  *ngIf="driversOnline?.length && menuItem?.hasStock && (establishment | async)?.vendorOnline && checkOnline((establishment | async)?.openingTime, (establishment | async)?.closingTime)"
+                  type="submit"
+                  [disabled]="!form.valid"
+                  class="ionBtn"
+                  >
+                  <span class="cartBtnText">
+                    <p>
+                      Add to cart
+                    </p><p>R{{ totalPrice }}</p>
+                  </span>
+                </ion-button>
+                <ion-button 
+                  *ngIf="!driversOnline?.length || !menuItem?.hasStock || !(establishment | async)?.vendorOnline || !checkOnline((establishment | async)?.openingTime, (establishment | async)?.closingTime)"
+                  class="ionBtn"
+                  disabled="true"
+                  >
+                  <span class="cartBtnText">
+                    <p>
+                      currently unavailable
+                    </p>
+                  </span>
+                </ion-button>
+              </div>
+            </form>
+
+            <div *ngIf="!menuItem.groupAddons?.length" class="cartButtonSingle">
+              <ion-button *ngIf="driversOnline?.length && menuItem?.hasStock && (establishment | async)?.vendorOnline && checkOnline((establishment | async)?.openingTime, (establishment | async)?.closingTime)"  class="ionBtn"  [disabled]="!form.valid"  (click)="addToCart()">
+                <span class="cartBtnText">
+                  <p>
+                    Add to cart
+                  </p><p>R{{ totalPrice * quantityToAdd }}</p>
+                </span>
+              </ion-button>
+              <ion-button *ngIf="!driversOnline?.length || !menuItem?.hasStock || !(establishment | async)?.vendorOnline || !checkOnline((establishment | async)?.openingTime, (establishment | async)?.closingTime)" class="ionBtn" disabled="true">
+                <span class="cartBtnText">
+                  <p>
+                    currently unavailable
+                  </p>
+                </span>
+              </ion-button>
+            </div>
+        </div>
+    </ion-content>

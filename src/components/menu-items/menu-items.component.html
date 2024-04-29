@@ -1,0 +1,18 @@
+  <ion-content>
+    <ion-card class="menuItems" *ngFor="let menuItem of menuItems">
+    <!--<img src="../../assets/images/image%2011.png" alt="food-item"/>-->
+        <ion-row (click)="setItemAndCategory(menuItem.id, categoryId)">
+          <ion-col   class="menuItem">
+            <h6>{{menuItem.foodName}}</h6>
+            <div>
+              <p class="foodDesc">{{menuItem.description}}</p>
+              <p class="foodPrice">R{{menuItem.foodPrice}}</p>
+            </div>
+          </ion-col>
+
+          <!-- <ion-col>
+           <ion-button (click)="menuDescription(menuItem.description, menuItem.foodName)">Description</ion-button>
+          </ion-col> -->
+        </ion-row>
+    </ion-card>
+  </ion-content>

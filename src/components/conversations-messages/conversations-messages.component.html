@@ -1,0 +1,9 @@
+
+<div id="messages">
+  <ul>
+    <div *ngFor="let m of messages">
+      <app-message-bubble *ngIf="m.author.toLowerCase() === myIdentity.toLowerCase()" [key]="m.index" direction="outgoing" [message]="m"></app-message-bubble>
+      <app-message-bubble *ngIf="m.author.toLowerCase() !== myIdentity.toLowerCase()" [key]="m.index" direction="incoming" [message]="m"></app-message-bubble>
+    </div>
+  </ul>
+</div>

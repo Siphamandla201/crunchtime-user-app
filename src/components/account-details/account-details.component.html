@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-row>
+    <ion-item-divider>
+      <ion-icon class="back-ion-icon" name="arrow-back" (click)="dismiss()"></ion-icon>
+      <h2>Edit Account</h2>
+    </ion-item-divider>
+  </ion-row>
+</ion-header>
+
+<ion-content>
+  <div class="form-container-new">
+    <form [formGroup]="form" *ngIf="form"  class="form-new">
+      <ion-list>
+        <div class="input-group">
+          <ion-label position="floating">Full Name</ion-label>
+          <input class="form-input-new" type="text" formControlName="fullName">
+        </div>
+        <div class="bottom-line-input"></div>
+  
+        <div class="input-group">
+        <ion-label position="floating">Email Address</ion-label>
+        <input class="form-input-new" type="text" formControlName="emailAddress">
+        </div>
+        <div class="bottom-line-input"></div>
+  
+        <div class="input-group">
+        <ion-label position="floating">Phone Number</ion-label>
+        <input class="form-input-new" type="text" formControlName="phoneNumber">
+        </div>
+        <div class="bottom-line-input"></div>
+  
+        <div class="input-group">
+        <ion-label position="floating">Password</ion-label>
+        <input class="form-input-new" type="password" formControlName="password">
+        </div>
+        <div class="bottom-line-input"></div>
+      </ion-list>
+    </form>
+  
+  <ion-row class="save-button">
+    <button (click)="updateOnTap()" class="submit" type="submit">
+      Save
+    </button>
+  </ion-row>
+
+  <ion-row (click)="presentConfrimation()" class="account-menu-option">
+    <div class="option-icon">
+      <ion-icon name="trash-outline"></ion-icon>
+    </div>
+    <div class="option-name">
+      <p>Delete account</p>
+    </div>
+    <div class="option-icon">
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </div>
+  </ion-row>
+</div>
+</ion-content>

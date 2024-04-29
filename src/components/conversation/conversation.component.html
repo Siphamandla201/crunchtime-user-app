@@ -1,0 +1,30 @@
+
+<div id="OpenChannel" style="position: relative; top: 0">
+  <div class="messages">
+    <div style="flex-basis: 100%; flex-grow: 2; flex-shrink: 1; overflow-y: scroll">
+      <app-conversations-messages
+        [myIdentity]="myIdentity"
+        [messages]="messages">
+      </app-conversations-messages>
+    </div>
+    <div>
+
+      <form (submit)="sendMessage($event)" [formGroup]="form" class="form">
+        <div class="list-container">
+        <ion-list>
+          <ion-input placeholder="enter message" type="text" formControlName="message" class="message-input" [value]="newMessage"></ion-input>
+        </ion-list>
+        </div>
+        <ion-button class="message-send-button" type="submit">
+          send
+        </ion-button>
+      </form> 
+      <!-- <Form onSubmit={this.sendMessage}>
+        <Input.Group compact={true} style={{ width: "100%", display: "flex", flexDirection: "row"m}}>
+          <Input style={{flexBasis: "100%"}} placeholder={"Type your message here..."}  type={"text"} name={"message"} id={styles['type-a-message']} autoComplete={"off"} disabled={this.state.loadingState !== 'ready'} onChange={this.onMessageChanged} value={this.state.newMessage} />
+          <Button icon="enter" htmlType="submit" type={"submit"}/>
+        </Input.Group>
+      </Form> -->
+    </div>
+  </div>
+</div>

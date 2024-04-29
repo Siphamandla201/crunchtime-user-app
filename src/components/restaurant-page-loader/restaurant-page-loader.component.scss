@@ -1,0 +1,56 @@
+.placeholder {
+    width: 100%;
+    height: 200px;
+    background-color: #eee;
+   }
+
+   .placeholder-title{
+    background-color: #eee;
+    height: 28.8px;
+    margin-top: 17px;
+    margin-left: 20px;
+    margin-right: 20px;
+
+   }
+
+   .info{
+    padding: 20px;
+    .placeholder-info{
+        height: 50px;
+        margin-top: 11px;
+        margin-bottom: 10px;
+    }
+   }
+   
+   @keyframes placeHolderShimmer{
+       0%{
+           background-position: -468px 0
+       }
+       100%{
+           background-position: 468px 0
+       }
+   }
+   
+   .animated-background {
+       animation-duration: 1.25s;
+       animation-fill-mode: forwards;
+       animation-iteration-count: infinite;
+       animation-name: placeHolderShimmer;
+       animation-timing-function: linear;
+       background: darkgray;
+       background: linear-gradient(to right, #eeeeee 10%, #dddddd 18%, #eeeeee 33%);
+       background-size: 800px 104px;
+       height: 100%;
+       position: relative;
+   }
+
+   .content-wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    background: #f6f6f6;
+    z-index: 100;
+  }

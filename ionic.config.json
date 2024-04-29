@@ -1,0 +1,7 @@
+{
+  "name": "crunchtime-user-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

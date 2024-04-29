@@ -1,0 +1,60 @@
+<!-- <ion-header>
+  <ion-row>
+    <ion-item-divider>
+      <ion-button class="add-icon" name="arrow-back" (click)="moveBackOnTap()"></ion-button>
+      <h1> Upload Image</h1>
+      <ion-button (click)="uploadImage()">Upload Logo</ion-button>
+    </ion-item-divider>
+  </ion-row>
+</ion-header>
+
+<ion-content>
+  <input type="file"
+  id="files"
+  (change)="onFileChangeImg($event)" style="display: none;">
+  <div class="col-md-8">
+    <image-cropper 
+      [imageChangedEvent]="imgChangeEvt" 
+      [maintainAspectRatio]="true" 
+      [aspectRatio]="8 / 4"
+      [resizeToWidth]="256" 
+      format="png" 
+      (imageCropped)="imageCropped($event)" 
+      (imageLoaded)="imgLoad()"
+      (cropperReady)="initCropper()" 
+      (loadImageFailed)="imgFailed()">
+    </image-cropper>
+  </div>
+
+  <ion-col class="spinner-container" *ngIf="loading">
+    <ion-row>
+      <ion-spinner name="crescent"></ion-spinner>
+    </ion-row>
+  </ion-col>
+</ion-content> -->
+
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Crop Image</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="uploadImage()" [strong]="true">Confirm</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+<!-- <ion-content class="ion-padding">
+  <input type="file" (change)="fileChangeEvent($event)" style="display: none;"/>
+
+  <image-cropper style="height: 100%;"
+      [imageChangedEvent]="imageChangedEvent"
+      [maintainAspectRatio]="true"
+      [aspectRatio]="4 / 3"
+      format="png"
+      (imageCropped)="imageCropped($event)"
+      (imageLoaded)="imageLoaded($event)"
+      (cropperReady)="cropperReady()"
+      (loadImageFailed)="loadImageFailed()"
+  ></image-cropper> 
+</ion-content> -->

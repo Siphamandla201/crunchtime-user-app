@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/password/reset"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="verify-email">
+    <ion-row>
+      <ion-col>
+        <ion-text class="welcome">
+         <h2><b>Check your email</b></h2>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-text class="welcome">
+          We sent a password recovery email with instructions to reset your password
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-grid class="button_grid">
+      <ion-row>
+        <ion-col>
+          <ion-button class="b1" (click)="openEmailOnTap()" color="danger">Open email app</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div class="bottom-content">
+      <p>Didn't receive the email? Check your spam, or try <span><b>another email address</b></span></p>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,70 @@
+ #navbar{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 3;
+   } 
+ #navbar ul{
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  /* z-index: 3; */
+  display: flex;
+  overflow: auto;
+  align-items: center;
+  background: #f6f6f6;
+  /* height: 56px; */
+  transition: top 0.3s;
+  margin: 0;
+  padding: 10px 15px;
+  justify-content: space-between;
+  box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.25);
+}
+
+  .active{
+    transition: .3s;
+    color: #FF0000;
+    font-family:"poppins";
+    z-index: 0;
+  }
+
+  .donation-button {
+
+    #active-donate-heart {
+      display: none;
+    }
+
+    #donate-heart {
+      margin-bottom: 5px;
+    }
+  }
+
+  .donation-button.active {
+
+    #active-donate-heart {
+      display: flex;
+      margin-bottom: 5px;
+    }
+
+    #donate-heart {
+      display: none;
+    }
+  }
+
+  button{
+    background-color: #f6f6f6;
+    color: #6B7280;
+    font-family: "poppins";
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    ion-icon{
+      margin-bottom: 5px;
+    }
+  }
+
+  ion-icon {
+    font-size: 22px;
+  }

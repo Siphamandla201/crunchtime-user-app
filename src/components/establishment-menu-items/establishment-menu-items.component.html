@@ -1,0 +1,17 @@
+<div class="container-slides">
+  <div class="food-content">
+    <div *ngFor="let menuItem of menuItems" class="menu-item">
+      <div>
+<!--        <img src="../../assets/images/image%2011.png" alt="food-item"/>-->
+        <div class="near-you-text" (click)="addItemCart(menuItem.id, menuItem.establishmentId, menuItem.foodPrice)">
+          <div class="near-you-sub-text">
+            <h6>{{menuItem.foodName}}</h6>
+            <p>{{menuItem.foodType}}</p>
+            <span>R{{menuItem.foodPrice}}</span>
+          </div>
+        </div>
+        <ion-button (click)="menuDescription(menuItem.description, menuItem.foodName)">Description</ion-button>
+      </div>
+    </div>
+  </div>
+</div>

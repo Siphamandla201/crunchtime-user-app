@@ -1,0 +1,369 @@
+<ion-content>
+  <div id="home-menu">
+
+    <header class="header-container">
+      <div class="header-top">
+        <ion-row>
+          <ion-col (click)="openLocationModal()" size="9">
+            <ion-row class="location-container" *ngIf="userAddress">
+              <ion-icon name="location-outline"></ion-icon>
+              <h5>{{(selectedAddress | async)?.address.split(',')[0].trim()}}</h5>
+            </ion-row>
+          </ion-col>
+          <ion-col id="niht-logo">
+            <img src="../../assets/icon/NHIT.png" alt="food-item"/>
+          </ion-col>
+          <!-- <img src="assets/icon/IRSA.png" alt="food-item"/> -->
+        </ion-row>
+      </div>
+      
+      <div class="header-search-menu">
+        <!-- <ion-buttons slot="start">
+          <ion-menu-button autoHide="false"></ion-menu-button>
+        </ion-buttons> -->
+        <ion-searchbar (ionFocus)="setOpen(true)" class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search" ></ion-searchbar>
+      </div>
+
+      <div *ngIf="searchText">
+        <ion-row *ngFor="let establishmentNear of establishments | async | filter:searchText">
+          <ion-col (click)="seeEstablishmentMenu(establishmentNear.establishmentName, establishmentNear.id, establishmentNear.logo, establishmentNear.latitude, establishmentNear.longitude)">{{establishmentNear.establishmentName}}</ion-col>
+        </ion-row>
+      </div>
+
+      <div *ngIf="searching" class="spinner-container">
+        <ion-spinner></ion-spinner>
+      </div>
+    </header>
+    
+
+    <div class="order-progress-bubble" *ngIf="orderProgress == 'true'" (click)="goToOrderStatus()">
+      <ion-row>
+        <ion-col>
+          <ion-row>
+            <h5>{{orderEstablishmentName}}</h5>
+          </ion-row>
+          <ion-row>
+            <h6>{{orderOrderNumber}}</h6>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+      <ion-progress-bar type="indeterminate"></ion-progress-bar>
+    </div>
+    
+    <div class="main-content">
+      <div *ngIf="(promos | async)?.length " class="container-slides2">
+        <div  class="food-content3">
+          <div  class="near-you-item3" *ngFor="let promo of promos | async" [ngClass]="{'first-time-order': promo.promoType === 'FIRST_TIME_ORDER', 'general-offer': promo.promoType === 'GENERAL', 'two-for-one': promo.promoType === 'TWO_FOR_ONE', 'establish-offer': promo.promoType === 'EST_GEN', 'buy-one-get-one-free': promo.promoType === 'BUY_ONE_GET_ONE_FREE'}" (click)="promo.promoType !== 'FIRST_TIME_ORDER' && handlePromo(promo)">
+            <div class="promo-content" *ngIf="promo.promoType === 'FIRST_TIME_ORDER'" > 
+              <!-- <div class="promo-text" >
+                <button *ngIf="promo?.promoType !== 'FIRST_TIME_ORDER'">Order</button>
+              </div> -->
+              <h5>CRUNCH TIME OFFER</h5>
+              <!-- <img [src]="promo.promoImage ? promo.promoImage : 'https://s3.us-east-2.amazonaws.com/crunch-time-images-staging/crunchicon.png'" alt=""> -->
+              <p>R{{promo.discountAmount}} OFF your first order over R{{promo.limitingPrice}}</p>
+              <p class="promo-code-txt">Promo Code: {{promo.promoCode}}</p>
+              
+            </div>
+            <div class="promo-content" *ngIf="promo.promoType === 'GENERAL'" > 
+              <!-- <div class="promo-text" >
+                <button *ngIf="promo?.promoType !== 'FIRST_TIME_ORDER'">Order</button>
+              </div> -->
+              <h5>CRUNCH TIME OFFER</h5>
+              <!-- <img [src]="promo.promoImage ? promo.promoImage : 'https://s3.us-east-2.amazonaws.com/crunch-time-images-staging/crunchicon.png'" alt=""> -->
+              <p>R{{promo.discountAmount}} OFF your order over R{{promo.limitingPrice}}</p>
+              <p class="promo-code-txt">Promo Code: {{promo.promoCode}}</p>
+            </div>
+            <!-- <div class="promo-content" *ngIf="promo.promoType !== 'FIRST_TIME_ORDER' || promo.promoType !== 'GENERAL'" > 
+              <h5>CRUNCH TIME OFFER</h5>
+              <img [src]=" 'https://s3.us-east-2.amazonaws.com/crunch-time-images-staging/crunchicon.png'" alt="">
+              <div class="promo-txt" [innerHTML]="setPromoText(promo.id)"></div>
+              <p class="promo-code-txt">Promo Code: {{promo.promoCode}}</p>
+              <button *ngIf="promo?.promoType !== 'FIRST_TIME_ORDER'">Order</button>
+            </div> -->
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="not-filtered" *ngIf="!foodTypeFilter?.length">
+        <div *ngIf="(favouritEstablishments | async)?.length" class="food-text-block">
+          <ion-row>
+            <ion-col>
+              <h1>Your Favourites</h1>
+              <h4>Your frequent orders</h4>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div *ngIf="(favouritEstablishments | async)?.length" class="container-slides2">
+          <div class="food-content2">
+            <div *ngFor="let category of favouriteStores" class="near-you-item">
+                <div class="card" (click)="seeEstablishmentMenu(category.establishmentName, category.id, category.logo, category.latitude, category.longitude)">
+                  <!-- <ion-img [src]="category.logo" [alt]="food-item"  ></ion-img> -->
+                  <div *ngIf="driversOnline?.length < 1 || !checkOnline(category.openingTime , category.closingTime) || !category.vendorOnline" class="middle2">
+                    <div class="time">
+                      <h6>offline</h6>
+                    </div>
+                  </div>
+                </div>
+              <ion-row class="near-you-title">
+                <ion-col>
+                  <h5>{{category.establishmentName.toUpperCase()}}</h5>
+                  <!-- <h6>{{category.establishmentType}}</h6> -->
+                </ion-col>
+              </ion-row>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="user && establishmentIdsNearYou?.length" class="food-text-block">
+          <ion-row>
+            <ion-col>
+              <h1>Near you</h1>
+              <h4>Choose from restuarants closest to you</h4>
+            </ion-col>
+          </ion-row>
+        </div>
+        <ion-col *ngIf="!user" class="profile" routerLink="/welcome">
+          <ion-row class="profile-container">
+            <h1>Welcome</h1>
+            <p>Start ordering food strictly halaal</p>
+          </ion-row>
+          <ion-row class="account-menu">
+            <ion-row class="account-menu-option">
+              <div class="option-icon">
+                <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+              </div>
+              <div class="option-name option-name-last">
+                <p>Login or Sign up</p>
+              </div>
+            </ion-row>
+          </ion-row>
+        </ion-col>
+        <!-- <ion-button *ngIf="!user" id="sign-up-btn" routerLink="/welcome">
+          Login or Sign up to start ordering
+        </ion-button> -->
+        <div class="container-slides2" *ngIf="user && establishmentIdsNearYou?.length">
+          <div class="food-content2">
+            <div *ngFor="let category of sortedEstablishments | distanceFilter:4" class="near-you-item">
+                <div class="card" (click)="seeEstablishmentMenu(category.establishmentName, category.id, category.logo, category.latitude, category.longitude)">
+                  <!-- <ion-img [src]="category.logo" [alt]="food-item"  ></ion-img> -->
+                  <div *ngIf="driversOnline?.length < 1 || !checkOnline(category.openingTime , category.closingTime) || !category.vendorOnline" class="middle2">
+                    <div class="time">
+                      <h6>offline</h6>
+                    </div>
+                  </div>
+                </div>
+                <ion-row class="near-you-title">
+                  <ion-col size="8">
+                    <h5>{{category.establishmentName.toUpperCase()}}</h5>
+                    <!-- <h6>{{category.establishmentType}}</h6> -->
+                  </ion-col>
+                </ion-row>
+                
+        
+                <!-- <div class="near-you-text2">
+                  <div class="near-you-sub-text2">
+                    <span class="sub-text-h1">{{category.establishmentName.toUpperCase()}}</span>
+                    <h6>({{getTimeToPlace(category.latitude, category.longitude).toFixed(0)}} -
+                        {{getTimeToPlace(category.latitude, category.longitude) + 5}} min)
+                    </h6>
+                  </div>
+                  </div> -->
+                </div>
+              </div>
+        </div>
+        
+  
+  
+        
+      <!-- <div *ngIf="favourites" class="favourites">
+        <div class="container-slides2">
+          <div class="food-content2">
+            <div *ngFor="let favourite of favourites | async">
+            
+              <div *ngFor="let category of establishmentsNearYou" class="near-you-item">
+                <div *ngIf="favourite.establishmentId === category.id">
+                  
+                  <ion-spinner *ngIf="loading"></ion-spinner>
+                  <ion-img [src]="category.logo" [alt]="food-item" (click)="seeEstablishmentMenu(category.establishmentName, category.id, category.logo)" ></ion-img>
+                  
+                  
+                  <div class="near-you-text2">
+                    <div class="near-you-sub-text2">
+                      <span class="sub-text-h1">{{category.establishmentName.toUpperCase()}}</span>
+                      <h6>({{getTimeToPlace(category.latitude, category.longitude).toFixed(0)}} -
+                        {{getTimeToPlace(category.latitude, category.longitude) + 5}} min)
+                      </h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        </div>
+      </div> -->
+  
+        <!-- <div class="container-slides">
+          <div *ngFor="let establishmentNear of establishments | async">
+            <h5>{{establishmentNear.establishmentName.toUpperCase()}}</h5>
+            <h6>({{getTimeToPlace(establishmentNear.latitude, establishmentNear.longitude).toFixed(0)}} -
+              {{getTimeToPlace(establishmentNear.latitude, establishmentNear.longitude) + 5}}
+              min)</h6>
+  
+            <app-categories [id]="establishmentNear.id"
+                            [establishmentName]="establishmentNear.establishmentName"
+                            [establishmentLogo]="establishmentNear.logo"
+                            [driversOnline]="driversOnline"></app-categories>
+  
+              
+          </div>
+        </div> -->
+  
+        
+        <div class="food-text-block">
+          <ion-row>
+            <ion-col>
+              <h1>All restuarants</h1>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div *ngFor="let establishment of sortedEstablishments  | distanceFilter:16" class="establishment">
+          <div (click)="seeEstablishmentMenu(establishment.establishmentName, establishment.id, establishment.logo, establishment.latitude, establishment.longitude)">
+            <ion-row class="absent-container" *ngIf="establishment.logo == undefined || establishment.logo == null">
+              <ion-row class="logo-absent-container">
+                <h2>{{establishment.establishmentName.toUpperCase()}}</h2>
+              </ion-row>
+              <ion-row class="near-you-text">
+                <ion-col size="4">
+                  <h6>{{establishment.establishmentType}}</h6>
+                </ion-col>
+                <ion-col>
+                  <h6 class="est-address">{{getSuburb(establishment.address)}}</h6>
+                </ion-col>
+                <ion-row>
+                  <h6>({{getTimeToPlace(establishment.latitude, establishment.longitude) + 25}} -
+                    {{getTimeToPlace(establishment.latitude, establishment.longitude) + 35}}
+                    min)</h6>
+                </ion-row>
+              </ion-row>
+            </ion-row>
+            <ion-row *ngIf="establishment.logo != undefined || establishment.logo != null">
+              <ion-row class="img-restaurant card">
+                <!-- <ion-img [src]="establishment.logo" [alt]="food-item"></ion-img> -->
+                <div *ngIf="driversOnline?.length >= 1 && checkOnline(establishment.openingTime , establishment.closingTime) && establishment.vendorOnline" class="middle">
+                  <div class="time">
+                    <h6>{{getTimeToPlace(establishment.latitude, establishment.longitude) + 25}} -
+                      {{getTimeToPlace(establishment.latitude, establishment.longitude) + 35}}
+                      min</h6>
+                  </div>
+                </div>
+                <div *ngIf=" !establishment.vendorOnline" class="middle2">
+                    <div class="time">
+                      <h6>offline</h6>
+                    </div>
+                  </div>
+                <div *ngIf="!checkOnline(establishment.openingTime, establishment.closingTime)" class="middle3">
+                  <div class="time3">
+                    <h6>{{checkOnlineText(establishment.openingTime, establishment.closingTime)}}</h6>
+                  </div>
+                </div>
+              </ion-row>
+                <ion-col size="8">
+                  <h5>{{establishment.establishmentName.toUpperCase()}}</h5>
+                  <!-- <h6>{{establishment.establishmentType}}</h6> -->
+                </ion-col>
+                <ion-col class="location-text" size="4">
+                  <h6 class="est-address">{{getSuburb(establishment.address)}}</h6>
+                </ion-col>
+            </ion-row>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="foodTypeFilter?.length" class="filtered">
+      <div class="food-text-block">
+        <ion-row class="selected-foodType">
+          <ion-col>
+            <h1>{{foodTypeFilter}}</h1>
+          </ion-col>
+          <ion-col class="reset-button">
+            <p (click)="clearFoodTypeFilter()">reset</p>
+          </ion-col>
+        </ion-row>
+      </div>
+      <!-- <div *ngFor="let establishment of sortedEstablishmentsFinal | async  | filter:foodTypeFilter" class="establishment">
+        <div (click)="seeEstablishmentMenu(establishment.establishmentName, establishment.id, establishment.logo, establishment.latitude, establishment.longitude)">
+          <ion-row class="absent-container" *ngIf="establishment.logo == undefined || establishment.logo == null">
+            <ion-row class="logo-absent-container">
+              <h2>{{establishment.establishmentName.toUpperCase()}}</h2>
+            </ion-row>
+            <ion-row class="near-you-text">
+              <ion-col size="4">
+                <h6>{{establishment.establishmentType}}</h6>
+              </ion-col>
+              <ion-col>
+                <h6 class="est-address">{{getSuburb(establishment.address)}}</h6>
+              </ion-col>
+              <ion-row>
+                <h6>({{getTimeToPlace(establishment.latitude, establishment.longitude) + 25}} -
+                  {{getTimeToPlace(establishment.latitude, establishment.longitude) + 35}}
+                  min)</h6>
+              </ion-row>
+            </ion-row>
+          </ion-row>
+          <ion-row *ngIf="establishment.logo != undefined || establishment.logo != null">
+            <ion-row class="img-restaurant card">
+              <ion-img [src]="establishment.logo" [alt]="food-item"></ion-img>
+              <div *ngIf="driversOnline?.length >= 1 && checkOnline(establishment.openingTime , establishment.closingTime) && establishment.vendorOnline" class="middle">
+                <div class="time">
+                  <h6>{{getTimeToPlace(establishment.latitude, establishment.longitude) + 25}} -
+                    {{getTimeToPlace(establishment.latitude, establishment.longitude) + 35}}
+                    min</h6>
+                </div>
+              </div>
+              <div *ngIf="seePromo(establishment.id) || (driversOnline?.length > 1)" [ngClass]="seePromo(establishment.id) ? 'promo-time2' : 'not-a-promo2'">
+                <div class="time3" >
+                  <h6>{{getPromoType(establishment.id)}}</h6>
+                </div>
+              </div>
+              <div *ngIf="driversOnline?.length < 1 && !checkOnline(establishment.openingTime , establishment.closingTime) && !establishment.vendorOnline" class="middle2">
+                  <div class="time">
+                    <h6>offline</h6>
+                  </div>
+                </div>
+                <div *ngIf="seePromo(category.id) || (driversOnline?.length > 1)" [ngClass]="seePromo(category.id) ? 'promo-time' : 'not-a-promo'">
+                  <div class="time2">
+                    <h6>PROMO</h6>
+                  </div>
+                </div>
+            </ion-row>
+              <ion-col size="8">
+                <h5>{{establishment.establishmentName.toUpperCase()}}</h5>
+                <h6>{{establishment.establishmentType}}</h6>
+              </ion-col>
+              <ion-col class="location-text" size="4">
+                <h6 class="est-address">{{getSuburb(establishment.address)}}</h6>
+              </ion-col>
+          </ion-row>
+        </div>
+      </div> -->
+      </div>
+      <div class="no-results" *ngIf="!(establishments | async  | filter:foodTypeFilter)?.length">
+        <h4>0 results for "{{foodTypeFilter}}"</h4>
+      </div>
+    </div>
+    <div *ngIf="theLoader">
+      <app-home-page-loader></app-home-page-loader>
+    </div>
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <app-search-results
+        (closeModal)="setOpen(false)"
+        (seeEst)="seeEst($event)"
+        (setFoodType)="setFoodType($event)"
+      ></app-search-results>
+    </ng-template>
+  </ion-modal>
+  </div>
+  
+</ion-content>
